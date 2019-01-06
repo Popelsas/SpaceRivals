@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: bbd791a7865938f45a5b3f92c2786c90
+timeCreated: 1486308381
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: LCD-DS-1
+  fontNames:
+  - LCD-DS-1
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

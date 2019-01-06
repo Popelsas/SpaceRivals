@@ -1,0 +1,1156 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GalaxyLib</name>
+    </assembly>
+    <members>
+        <member name="T:GalaxyLib.NetVar">
+            <summary>
+            Синхронизируемая переменная
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.NetRPC">
+            <summary>
+            Удаленно вызываемая процедура
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ConfigHeader.simulate_latency">
+            <summary>
+            Эмуляция пинга. 0,05 для 50 мс лага
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ConfigHeader.simulate_loss">
+            <summary>
+            Эмуляция потерь сообщений. 1 = 100% потери
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ConfigHeader.MAX_RATE_SEND_BYTES_IN_SECOND">
+            <summary>
+            Максимально вожможное кол-во отправляемых байт в сек.
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ConfigHeader.app_name">
+            <summary>
+            Идентификатор приложения. Должен соответствовать имени сервера.
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ConfigHeader.app_key">
+            <summary>
+            Уникальный ключ приложения. Его можно получить или изменить на веб-сайте в личном кабинете.
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.ConnectionHeader">
+            <summary>
+            Конфигурация подключения
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ConnectionHeader.clientId">
+            <summary>
+            Уникальный идентификатор клиента
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ConnectionHeader.clientNikName">
+            <summary>
+            Никнейм клиента
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ConnectionHeader.isHost">
+            <summary>
+            Я являюсь хостом
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.ConnectionHeader.netClient">
+            <summary>
+            Peer соединения
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ConnectionHeader.GetPing">
+            <summary>
+            Значение AverageRoundtripTime (Ping) в секундах.
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ConnectionHeader.GetCountBytesIn">
+            <summary>
+            Общее количество принятых байт
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ConnectionHeader.GetCountMessagesIn">
+            <summary>
+            Общее количество принятых сообщений
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ConnectionHeader.GetCountPacketsIn">
+            <summary>
+            Общее количество принятых пакетов
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ConnectionHeader.GetCountBytesOut">
+            <summary>
+            Общее количество отправленных байт
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ConnectionHeader.GetCountMessagesOut">
+            <summary>
+            Общее количество отправленных сообщений
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ConnectionHeader.GetCountPacketsOut">
+            <summary>
+            Общее количество отправленных пакетов
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.ConnectionHeader.selected_host_web">
+            <summary>
+            Выбранный адрес веб-сервера
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ConnectionHeader.connected">
+            <summary>
+            Статус подключения к серверу
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.ConnectionHeader.Connect(System.String,System.String,GalaxyLib.ServerLocation)">
+            <summary>
+            Подключение к серверу
+            </summary>
+            <param name="login">Логин</param>
+            <param name="password">Пароль</param>
+            <param name="serverLocation">Региональное расположение сервера</param>
+        </member>
+        <member name="M:GalaxyLib.ConnectionHeader.Disconnect">
+            <summary>
+            Отключиться от сервера
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.ConnectionHeader.SelectServer(GalaxyLib.ServerLocation)">
+            <summary>
+            Выбор сервера для подключения
+            </summary>
+            <param name="serverLocation">пример: ServersList.Region.RUS.Yaroslavl.server1</param>
+        </member>
+        <member name="T:GalaxyLib.Operations.OperationStream">
+            <summary>
+            Операции с чатом
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationStream.SendData(System.Byte[],System.Byte)">
+            <summary>
+            Отправка потока данных
+            </summary>
+            <param name="data">Данные</param>
+            <param name="channel">Канал отправки (0-255)</param>
+        </member>
+        <member name="T:GalaxyLib.Operations.OperationChat">
+            <summary>
+            Операции с чатом
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationChat.SendMessage(System.String,System.Byte)">
+            <summary>
+            Отправка сообщения в чат
+            </summary>
+            <param name="textMessage">Текстовое сообщение</param>
+            <param name="channel">Канал отправки чата (0-255)</param>
+        </member>
+        <member name="T:GalaxyLib.Operations.OperationGame">
+            <summary>
+            Операции в мире
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationNetObject.Instantiate(GalaxyLib.GGObject)">
+            <summary>
+            Создание нового объекта
+            </summary>
+            <param name="netObject">структура сетевого объекта</param>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationNetObject.Destroy(GalaxyLib.GGObject)">
+            <summary>
+            Удаление сетевого объекта
+            !! возможно поменять входной параметр на NetId
+            </summary>
+            <param name="netObject">удаляемый объект</param>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationNetObject.Destroy(System.UInt16)">
+            <summary>
+            Удаление сетевого объекта
+            </summary>
+            <param name="id">уникальный идентификатор удаляемого объекта</param>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationNetObject.Position(GalaxyLib.GGObject,UnityEngine.Vector3,SyncDelivery)">
+            <summary>
+            Позиция
+            </summary>
+            <param name="netObject">сетевой объект</param>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationNetObject.Rotation(GalaxyLib.GGObject,UnityEngine.Quaternion,SyncDelivery)">
+            <summary>
+            Вращение
+            </summary>
+            <param name="netObject">сетевой объект</param>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationNetObject.PositionAndRotation(GalaxyLib.GGObject,UnityEngine.Vector3,UnityEngine.Quaternion,SyncDelivery)">
+            <summary>
+            Позиция и Вращение
+            </summary>
+            <param name="netObject">сетевой объект</param>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationNetObject.AnimatorState(GalaxyLib.GGObject,System.Int32,System.Int32)">
+            <summary>
+            Анимация
+            </summary>
+            <param name="netObject">сетевой объект</param>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationNetObject.NetVar(GalaxyLib.GGObject,SyncDelivery)">
+            <summary>
+            Синхронизация переменных
+            </summary>
+            <param name="netObject">сетевой объект</param>
+            <param name="delivery">гарантия доставки</param>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationNetObject.Transfer(GalaxyLib.GGObject,System.UInt32)">
+            <summary>
+            Передача объекта другому хозяину
+            </summary>
+            <param name="netObject">сетевой объект</param>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationRoom.GetRoomsList(System.Byte)">
+            <summary>
+            Запрос списка комнат
+            </summary>
+            <param name="maxCnt">ограничить кол-во выводимых записей (15 по умолчанию, 100 максимум)</param>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationRoom.EnterToNewRoom(GalaxyLib.GGRoom)">
+            <summary>
+            Создание новой комнаты и вход в нее
+            </summary>
+            <param name="room">Конфигурация комнаты</param>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationRoom.RoomEnter(System.UInt16)">
+            <summary>
+            Запрос на переход в комнату
+            </summary>
+            <param name="roomId">уникальный ID комнаты</param>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationRoom.RoomExitToLobby">
+            <summary>
+            Запрос на переход в комнату
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.Operations.OperationTransform">
+            <summary>
+            Операции перемещения
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationTransform.MyPosition(UnityEngine.Vector3,System.Boolean)">
+            <summary>
+            Перемещение внутри комнаты и сектора
+            </summary>
+            <param name="pos">вектор положения</param>
+            <param name="guaranty">гарантия доставки пакета</param>
+        </member>
+        <member name="M:GalaxyLib.Operations.OperationTransform.MyRotation(UnityEngine.Quaternion,System.Boolean)">
+            <summary>
+            Вращение внутри комнаты и сектора
+            </summary>
+            <param name="rot">вектор положения (Quaternion)</param>
+            <param name="guaranty">гарантия доставки пакета</param>
+        </member>
+        <member name="T:GalaxyLib.ServersList">
+            <summary>
+            Список серверов
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.ServersList.Region">
+            <summary>
+            Регион расположения сервера
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.ServersList.Region.RUS">
+            <summary>
+            Россия
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.ServersList.Region.RUS.Yaroslavl">
+            <summary>
+            Ярославль
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.ServersList.Region.RUS.Moscow">
+            <summary>
+            Москва
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.ServersList.Region.UKR">
+            <summary>
+            Украина
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.ServersList.Region.UKR.Kiev">
+            <summary>
+            Киев
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.ServersList.Local">
+            <summary>
+            Локальное расположение сервера
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.GGObject">
+            <summary>
+            Сетевой объект
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGObject.id">
+            <summary>
+            Уникальный идентификатор
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGObject.local_id">
+            <summary>
+            Локальный идентификатор
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGObject.isMy">
+            <summary>
+            Это мой объект?
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGObject.isHost">
+            <summary>
+            Это объект хоста (создателя комнаты)?
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGObject.prefName">
+            <summary>
+            Путь + Имя префаба в папке Resources
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGObject.position">
+            <summary>
+            Положение
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGObject.rotation">
+            <summary>
+            Поворот
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGObject.data">
+            <summary>
+            Дополнительные данные
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGObject.owner_id">
+            <summary>
+            Идентификатор клиента, владельца объекта
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GGObject.netVarsList">
+            <summary>
+            Сетевые переменные этого объекта
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.GGObject.#ctor(System.UInt16,System.UInt16,System.UInt32,System.String,UnityEngine.Vector3,UnityEngine.Quaternion,System.Object)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="id">Уникальный идентификато</param>
+            <param name="local_id">Локальный идентификато</param>
+            <param name="owner_id">Владелец объекта</param>
+            <param name="prefName">Путь и Имя префаба</param>
+            <param name="position">Позиция</param>
+            <param name="rotation">Поворот</param>
+        </member>
+        <member name="M:GalaxyLib.GGObject.CallRPC(System.String,System.Object[])">
+            <summary>
+            Удаленный вызов процедуры RPC
+            </summary>
+            <param name="rpc_name">Имя вызываемого метода (помеченого атрибутом [NetRPC])</param>
+            <param name="data">Дополнительные данные</param>
+        </member>
+        <member name="M:GalaxyLib.GGObject.SendData(System.Object,System.UInt16)">
+            <summary>
+            Отправить сообщение.
+            Сообщение другому сетевому объекту NetID (в разработке)
+            </summary>
+            <param name="net_id">Сетевой объект, кто отправил сообщение (не обязательно)</param>
+        </member>
+        <member name="M:GalaxyLib.GGObject.GetNetVarsCount">
+            <summary>
+            Количество сетевых переменных
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GalaxyLib.GGObject.GetNetVarsListCopy">
+            <summary>
+            Копия списка сетевых переменных
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GalaxyLib.GGObject.NetVarAdd(GalaxyCommon.NetVarStruct)">
+            <summary>
+            Добавить сетоевую переменную
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GalaxyLib.GGObject.NetVarAddChanged(System.Byte,System.Byte,System.Object)">
+            <summary>
+            Добавить сетоевую переменную (по параметрам)
+            </summary>
+            <param name="num_class"></param>
+            <param name="num_var"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:GalaxyLib.GGObject.NetVarClear">
+            <summary>
+            Очистить список сетевых переменных
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GalaxyLib.Log.SetLevel(GalaxyCommon.LogLevel)">
+            <summary>
+            Установить уровень вывода сообщений логирования
+            </summary>
+            <param name="level"></param>
+        </member>
+        <member name="M:GalaxyLib.Log.Trace(System.String,System.Object[])">
+            <summary>
+            Большой поток данных
+            </summary>
+            <param name="message"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:GalaxyLib.Log.Info(System.String,System.Object[])">
+            <summary>
+            Приоритетная информация
+            </summary>
+            <param name="message"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:GalaxyLib.Log.Debug(System.String,System.Object[])">
+            <summary>
+            Отладочное сообщение
+            </summary>
+            <param name="message"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:GalaxyLib.Log.Warn(System.String,System.Object[])">
+            <summary>
+            Сообщение предупреждения
+            </summary>
+            <param name="message"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:GalaxyLib.Log.Error(System.String,System.Object[])">
+            <summary>
+            Сообщение об ошибке
+            </summary>
+            <param name="message"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:GalaxyLib.Log.Error(System.Exception)">
+            <summary>
+            Сообщение об ошибке
+            </summary>
+            <param name="exn">exception</param>
+        </member>
+        <member name="M:GalaxyLib.Log.Message(GalaxyCommon.LogLevel,System.String,System.Object[])">
+            <summary>
+            Многофункциональное сообщение логирования
+            </summary>
+            <param name="level"></param>
+            <param name="message"></param>
+            <param name="args"></param>
+        </member>
+        <member name="T:GalaxyLib.LogUnityClient">
+            <summary>
+            Модуль логирования
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.LogUnityClient.#ctor">
+            <summary>
+            Инициализация модуля логирования
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.ObjectsHeader">
+            <summary>
+            Набор методов, для взаимодействия с сетевыми объектами.
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ObjectsHeader.GetNewLocalId">
+            <summary>
+            Получить новый локальный id
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.ObjectsHeader.Count">
+            <summary>
+            Количество объектов
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.ObjectsHeader.Exist(System.UInt16)">
+            <summary>
+            Проверка, такой объект есть в списке?
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GalaxyLib.ObjectsHeader.GetObject(System.UInt16)">
+            <summary>
+            Получить объект по id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GalaxyLib.ObjectsHeader.Clear">
+            <summary>
+            Очистить в онлайн список игроков
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.ObjectsHeader.Add(System.UInt16,GalaxyLib.GGObject)">
+            <summary>
+            Добавить объект в список
+            </summary>
+            <param name="id"></param>
+            <param name="netObject"></param>
+            <returns>успех или нет</returns>
+        </member>
+        <member name="M:GalaxyLib.ObjectsHeader.Remove(System.UInt16)">
+            <summary>
+            Удалить объект из списока
+            </summary>
+            <param name="id"></param>
+            <returns>успех или нет</returns>
+        </member>
+        <member name="T:GalaxyLib.PlayerPrefsHeader">
+            <summary>
+            Пользовательские данные
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.PlayerPrefsHeader.SetInt(System.String,System.Int32)">
+            <summary>
+            Записать INT
+            </summary>
+            <param name="key">ключ</param>
+            <param name="value">значение</param>
+        </member>
+        <member name="M:GalaxyLib.PlayerPrefsHeader.SetBool(System.String,System.Boolean)">
+            <summary>
+            Записать BOOLEAN
+            </summary>
+            <param name="key">ключ</param>
+            <param name="value">значение</param>
+        </member>
+        <member name="M:GalaxyLib.PlayerPrefsHeader.SetFloat(System.String,System.Single)">
+            <summary>
+            Записать FLOAT
+            </summary>
+            <param name="key">ключ</param>
+            <param name="value">значение</param>
+        </member>
+        <member name="M:GalaxyLib.PlayerPrefsHeader.SetString(System.String,System.String)">
+            <summary>
+            Записать STRING
+            </summary>
+            <param name="key">ключ</param>
+            <param name="value">значение</param>
+        </member>
+        <member name="M:GalaxyLib.PlayerPrefsHeader.GetInt(System.String)">
+            <summary>
+            Прочитать INT
+            </summary>
+            <param name="key">ключ</param>
+        </member>
+        <member name="M:GalaxyLib.PlayerPrefsHeader.GetListInt">
+            <summary>
+            Прочитать все INT в виде словаря
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.PlayerPrefsHeader.GetBool(System.String)">
+            <summary>
+            Прочитать BOOLEAN
+            </summary>
+            <param name="key">ключ</param>
+        </member>
+        <member name="M:GalaxyLib.PlayerPrefsHeader.GetListBool">
+            <summary>
+            Прочитать все BOOLEAN в виде словаря
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.PlayerPrefsHeader.GetFloat(System.String)">
+            <summary>
+            Прочитать FLOAT
+            </summary>
+            <param name="key">ключ</param>
+        </member>
+        <member name="M:GalaxyLib.PlayerPrefsHeader.GetListFloat">
+            <summary>
+            Прочитать все FLOAT в виде словаря
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.PlayerPrefsHeader.GetString(System.String)">
+            <summary>
+            Прочитать STRING
+            </summary>
+            <param name="key">ключ</param>
+        </member>
+        <member name="M:GalaxyLib.PlayerPrefsHeader.GetListString">
+            <summary>
+            Прочитать все STRING в виде словаря
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.PlayerPrefsHeader.SaveAllToLocalPlayerprefs">
+            <summary>
+            (beta) Сохранить все сетевые PlayerPrefs в локальные
+            bool => int (конвертация, для совместимости)
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.PlayerPrefsHeader.onValid(System.String)">
+            <summary>
+            Проверка правильности ключа
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GalaxyLib.PlayerPrefsHeader.ServerSentVars(Lidgren.Network.NetIncomingMessage)">
+            <summary>
+            Сервер прислал пользовательские переменные
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="T:GalaxyLib.PlayersHeader">
+            <summary>
+            (УСТАРЕВШЕЕ!) Набор методов, для взаимодействия с сетевыми игроками.
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.PlayersHeader.MyPlayer">
+            <summary>
+            Мой персонаж
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.PlayersHeader.GetPlayersList">
+            <summary>
+            Получить список игроков
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:GalaxyLib.PlayersHeader.Count">
+            <summary>
+            Количество онлайн игроков рядом с вами
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.PlayersHeader.Exist(System.UInt32)">
+            <summary>
+            Проверка, такой игрок есть в списке?
+            </summary>
+            <param name="clientId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GalaxyLib.PlayersHeader.GetPlayer(System.UInt32)">
+            <summary>
+            Получить игрока по id
+            </summary>
+            <param name="clientId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GalaxyLib.PlayersHeader.Clear">
+            <summary>
+            Очистить онлайн список игроков
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.PlayersHeader.Add(System.UInt32,GalaxyLib.GGPlayer)">
+            <summary>
+            Добавить игрока в онлайн список
+            </summary>
+            <param name="clientId"></param>
+            <param name="player"></param>
+            <returns>успех или нет</returns>
+        </member>
+        <member name="M:GalaxyLib.PlayersHeader.Remove(System.UInt32)">
+            <summary>
+            Удалить игрока из онлайн списка
+            </summary>
+            <param name="clientId"></param>
+            <returns>успех или нет</returns>
+        </member>
+        <member name="M:GalaxyLib.PlayersHeader.UpdateInfo(System.UInt32,System.UInt16,System.String,System.Byte,System.Byte,System.Byte,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Обновить информацию игрока
+            </summary>
+            <param name="clientId">id клиента</param>
+            <param name="avaId">аватарка</param>
+            <param name="name">имя</param>
+            <param name="sec_x">сектор X</param>
+            <param name="sec_y">сектор Y</param>
+            <param name="sec_z">сектор Z</param>
+            <param name="pos_x">позиция X</param>
+            <param name="pos_y">позиция Y</param>
+            <param name="pos_z">позиция Z</param>
+            <returns></returns>
+        </member>
+        <member name="T:GalaxyLib.EventHeader">
+            <summary>
+            Класс Событий (Events)
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.EventHeader.#ctor">
+            <summary>
+            Конструктор
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.EventHeader.EventsList">
+            <summary>
+            Очередь входящих событий от сервера
+            Забрать событие: GetNext();
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.EventHeader.count">
+            <summary>
+            Накопившиеся, не обработанные события
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.EventHeader.GetNext">
+            <summary>
+            Взять последнее событие и удалить его из кеша
+            </summary>
+            <returns></returns>
+            
+        </member>
+        <member name="M:GalaxyLib.EventHeader.Add(GalaxyLib.ServerEvent)">
+            <summary>
+             Добавить Событие
+            </summary>
+            <param name="newEvent"></param>
+        </member>
+        <member name="T:GalaxyLib.GroupOperations">
+            <summary>
+            Операции
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GroupOperations.Room">
+            <summary>
+            Операции работы с комнатами
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GroupOperations.Transform">
+            <summary>
+            Операции работы с перемещением
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GroupOperations.Chat">
+            <summary>
+            Операции работы с чатом
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GroupOperations.NetObject">
+            <summary>
+            Операции работы с сетевыми объектами
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GroupOperations.StreamData">
+            <summary>
+            Операции работы с потоковыми данными
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.GroupOperations.SendMessage(Lidgren.Network.NetOutgoingMessage,Lidgren.Network.NetDeliveryMethod,System.Int32)">
+            <summary>
+            Операции работы с сетевыми объектами
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.GGRoom">
+            <summary>
+            Свойства: Конфигурации комнаты
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGRoom.id">
+            <summary>
+            Уникальный идентификатор комнаты (только чтение)
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGRoom.name">
+            <summary>
+            Название комнаты
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGRoom.clients_count">
+            <summary>
+            Текущее кол-во клиентов в комнате
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGRoom.clients_count_max">
+            <summary>
+            Максимально возможное кол-во клиентов в этой комнате
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGRoom.visible">
+            <summary>
+            Видимая или скрытая(приватная) комната
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGRoom.owner_client_id">
+            <summary>
+            Уникальный идентификатор хоста-клиента (создателья) комнаты
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGRoom.owner_client">
+            <summary>
+            Владелец (создатель) комнаты.
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGRoom.param_int1">
+            <summary>
+            Пользовательский параметр_1 комнаты
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGRoom.param_int2">
+            <summary>
+            Пользовательский параметр_2 комнаты
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGRoom.param_int3">
+            <summary>
+            Пользовательский параметр_3 комнаты
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.GGRoom.#ctor(System.String,System.UInt16,System.UInt16,System.UInt32,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Комната
+            </summary>
+            <param name="name">Название комнаты (max 32 симв.)</param>
+            <param name="clients_count_max">Максимальное количество игроков</param>
+            <param name="client_host_id">Хост(создатель) комнаты</param>
+            <param name="visible">Видимая или скрытая</param>
+            <param name="param_int1">Пользовательские параметры 1</param>
+            <param name="param_int2">Пользовательские параметры 2</param>
+            <param name="param_int3">Пользовательские параметры 3</param>
+        </member>
+        <member name="M:GalaxyLib.GGRoom.#ctor(System.String,System.UInt16,System.Boolean,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Комната
+            </summary>
+            <param name="name">Название комнаты (max 32 симв.)</param>
+            <param name="clients_count_max">Максимальное количество игроков</param>
+            <param name="visible">Видимая или скрытая</param>
+            <param name="param_int1">Пользовательские параметры 1</param>
+            <param name="param_int2">Пользовательские параметры 2</param>
+            <param name="param_int3">Пользовательские параметры 3</param>
+        </member>
+        <member name="T:GalaxyLib.ServerEvent">
+            <summary>
+            Серверное событие
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.ServerEvent.eventCode">
+            <summary>
+            Код события
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.ServerEvent.eventData">
+            <summary>
+            Массив параметров серверного события
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.ServerEvent.eventSizeInByte">
+            <summary>
+            Размер пакета, пришедший по сети
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.ServerEvent.#ctor(GalaxyCommon.EventCode,System.Object[],System.Int32)">
+            <summary>
+            Конструктор (с доп. параметрами)
+            </summary>
+            <param name="eventCode">Имя события</param>
+            <param name="eventData">Параметры</param>
+        </member>
+        <member name="M:GalaxyLib.ServerEvent.#ctor(GalaxyCommon.EventCode)">
+            <summary>
+            Конструктор (без доп. параметров)
+            </summary>
+            <param name="eventCode">Имя события</param>
+        </member>
+        <member name="M:GalaxyLib.ServerEvent.ReadNextValue">
+            <summary>
+            Прочитать данные
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GalaxyLib.ServerEvent.WriteNextValue(System.Object)">
+            <summary>
+            Записать данные
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:GalaxyLib.GalaxyNetwork">
+            <summary>
+            Главный класс Клиента
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GalaxyNetwork.Config">
+            <summary>
+            Конфигурация
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GalaxyNetwork.Connection">
+            <summary>
+            Конфигурация подключения к серверу
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GalaxyNetwork.Players">
+            <summary>
+            Игроки онлайн, которые находятся в твоем инстансе (комнате)
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GalaxyNetwork.PlayerPrefs">
+            <summary>
+            Пользовательские данные
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GalaxyNetwork.Room">
+            <summary>
+            Текущая комната игрока
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GalaxyNetwork.NetObjects">
+            <summary>
+            Сетевые Объекты
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GalaxyNetwork.Timer">
+            <summary>
+            Таймер синхронизации
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GalaxyNetwork.Events">
+            <summary>
+            События, присланные сервером (Events)
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GalaxyNetwork.SendOperation">
+            <summary>
+            Отправка Операций (Operations)
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GalaxyNetwork.Info">
+            <summary>
+            Статистика клиента
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.GGPlayer">
+            <summary>
+            Класс игрока
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGPlayer.clientId">
+            <summary>
+            Идентификатор клиента
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGPlayer.avaId">
+            <summary>
+            Аватарка
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGPlayer.name">
+            <summary>
+            Имя персонажа
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGPlayer.isMy">
+            <summary>
+            Да - это я? (иначе - другой сетевой игрок)
+            </summary>
+        </member>
+        <member name="F:GalaxyLib.GGPlayer.pred_sector_x">
+            <summary>
+            Предыдущий сектор
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGPlayer.sector_x">
+            <summary>
+            Текущий сектор
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGPlayer.position">
+            <summary>
+            Позиция
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.GGPlayer.rotation">
+            <summary>
+            Поворот
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.GGPlayer.#ctor(System.UInt32,System.String)">
+            <summary>
+            Конструктор
+            </summary>
+            <param name="clientId">Идентификатор клиента</param>
+            <param name="name">Имя</param>
+        </member>
+        <member name="M:GalaxyLib.GGPlayer.#ctor(System.UInt32,System.UInt16,System.String,System.Byte,System.Byte,System.Byte,UnityEngine.Vector3,UnityEngine.Quaternion)">
+            <summary>
+            Игрок
+            </summary>
+            <param name="clientId">Уникальный идентификатор</param>
+            <param name="avaId">Аватарка</param>
+            <param name="name">Имя</param>
+            <param name="sector_x">Сектор</param>
+            <param name="sector_y">Сектор</param>
+            <param name="sector_z">Сектор</param>
+            <param name="position">Положение</param>
+            <param name="rotation">Поворот</param>
+        </member>
+        <member name="T:GalaxyLib.P_int">
+            <summary>
+            Защищенный Int32
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.P_uint">
+            <summary>
+            Защищенный Uint32
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.P_float">
+            <summary>
+            Защищенный Float
+            </summary>
+        </member>
+        <member name="T:GalaxyLib.shared.SerializeBinary">
+            <summary>
+            Процедуры сериализации и десирилизации данных
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.shared.SerializeBinary.Serialize(System.Object)">
+            <summary>
+            GalaxyNetwork Сериализация
+            </summary>
+            <param name="obj">Сериализуемый объект</param>
+            <returns></returns>
+        </member>
+        <member name="M:GalaxyLib.shared.SerializeBinary.Desirialize(System.Byte[])">
+            <summary>
+            GalaxyNetwork Десириализация
+            </summary>
+            <param name="arrBytes">Десириализуемый массив байт</param>
+            <returns></returns>
+        </member>
+        <member name="M:GalaxyLib.shared.SerializeBinary.SerializeZip(System.Object)">
+            <summary>
+            GalaxyNetwork Сжатая сериализация
+            </summary>
+            <param name="obj">Сериализуемый объект</param>
+            <returns></returns>
+        </member>
+        <member name="M:GalaxyLib.shared.SerializeBinary.DesirializeZip(System.Byte[])">
+            <summary>
+            GalaxyNetwork Сжатая десириализация
+            </summary>
+            <param name="arrBytes">Десириализуемый массив байт</param>
+            <returns></returns>
+        </member>
+        <member name="T:GalaxyLib.Statistics">
+            <summary>
+            Класс статистики клиента
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.lastEventName">
+            <summary>
+            Имя последней вызванной RPC
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.eventsCount">
+            <summary>
+            Счетчик процедур RPC
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.myClientId">
+            <summary>
+            Твой ID пользователя
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.myNickName">
+            <summary>
+            Твое имя пользователя
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.ReceivedMessages">
+            <summary>
+            Принято сообщений (всего)
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.ReceivedBytes">
+            <summary>
+            Принято байт (всего)
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.ReceivedPackets">
+            <summary>
+            Принято пакетов (всего)
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.SentMessages">
+            <summary>
+            Отправлено сообщений (всего)
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.SentBytes">
+            <summary>
+            Отправлено байт (всего)
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.SentPackets">
+            <summary>
+            Отправлено пакетов (всего)
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.RecicledBufferBytes">
+            <summary>
+            Размер бат в буфере
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.roomId">
+            <summary>
+            Ид текущей комнаты (если 0 то это лобби)
+            </summary>
+        </member>
+        <member name="M:GalaxyLib.Statistics.#ctor">
+            <summary>
+            Конструктор
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.SendByteRate">
+            <summary>
+            Отправлено Байт в сек.
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.ReadByteRate">
+            <summary>
+            Принято Байт в сек.
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.SendByteRateAverage">
+            <summary>
+            (Усредненое) Отправлено Байт в сек.
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.ReadByteRateAverage">
+            <summary>
+            (Усредненое) Принято Байт в сек.
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.ExcessSendRate">
+            <summary>
+            Превышен лимит передачи байт в секунду
+            </summary>
+        </member>
+        <member name="P:GalaxyLib.Statistics.ExcessSendRateAverage">
+            <summary>
+            (Усредненое) Превышен лимит передачи байт в секунду
+            </summary>
+        </member>
+        <member name="T:Enums">
+            <summary>
+            Папаметр. Кому придет RPC?
+            </summary>
+        </member>
+    </members>
+</doc>
